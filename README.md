@@ -1,32 +1,46 @@
 # translate-po
 
-Simple quick script for automatically translating .po files using Google. It speeds up internationalization by giving translators machine translated base version to correct.
+Simple quick script for automatically translating .po files using Google. It speeds up internationalization by giving
+translators machine translated base version to correct.
 
 ## Usage
 
 Installation
+
 ```cmd
-pip install translate-po
+pip install django-translate_po
 ```
 
-Usage
-```python
-from translate_po.main import run
+Usage with translate function
 
-run(fro="en" to="et" src="./untranslated" dest="./translated")
+```python
+from translate_po.translator_functions import select_translator_function
+
+# Can use AWS or Google translate service,
+# but if want use AWS service, you must add some settings into django's settings.py file, like this:
+AWS_TRANSLATE_SERVICE = {
+    "service_name": "translate",
+    "service_region": "us-west-2",
+    "access_key": "your-access-key",
+    "access_secret": "your-access_secret"
+}
+translator_function = select_translator_function("AWS")
+# translator_function = select_translator_function("Google")
+res_text = translator_function("your-text", source_code="us", target_code="de")
+```
+
+Usage with translate po file
+
+```python
+from translate_po.translate import PoTranslator
+
+po_translator = PoTranslator("./a.po", translator_service="AWS", source_code="en", target_code="zh")
+po_translator.generate_text_for_untranslated()
+
 ```
 
 ### Changelog
-1.0.13
-- Fixed typo in the readme
 
-1.0.11
-- Fixed distributable not including parts of code
-- Build script improvements
-- Fixed dependencies not automatically installing
-- Added .po file recognition
-- Changed default constants for simpler use
+0.1.0
 
-1.0.4 
-- Swapped out my own implementation of .po file parser for polib one. 
-- Fixed metadata writing into new files.
+- Release Django-translate_po
