@@ -8,7 +8,7 @@ from .base_config import REDIS_URL
 class AbstractTranslator(ABC):
 
     @abstractmethod
-    def translate(self, text):
+    def translate(self, text, target_code, source_code="en"):
         pass
 
 
