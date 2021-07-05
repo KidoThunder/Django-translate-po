@@ -19,16 +19,10 @@ def build_dist():
 
 
 def upload_to_pypi(live=False):
-    with open('.env', "r") as file:
-        if live:
-            file.readline()
-            token = file.readline()[6:]
-        else:
-            token = file.readline()[10:]
     if live:
-        os.system(f"twine upload dist/* -u __token__ -p {token}")
+        os.system(f"twine upload dist/*")
     else:
-        os.system(f"twine upload -r testpypi dist/* -u __token__ -p {token}")
+        os.system(f"twine upload -r testpypi dist/*")
 
 
 if __name__ == '__main__':
