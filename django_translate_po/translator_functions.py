@@ -1,5 +1,5 @@
-from translators.google.translator import GoogleTranslator
-from translators.aws.translator import AWSTranslator
+from django_translate_po.translators.google.translator import GoogleTranslator
+from django_translate_po.translators.aws.translator import AWSTranslator
 
 
 def select_translator_function(translator_name):
@@ -17,13 +17,12 @@ def select_translator_function(translator_name):
     def aws_selector():
         from django.conf import settings
 
-        aws_translate_service = settings.get("AWS_TRANSLATE_SERVICE")
-        if not aws_translate_service:
+        service = getattr(settings, "AWS_TRANSLATE_SERVICE", None)
+        if not service:
             raise Exception("Loss of the AWS translate service config")
 
         return AWSTranslator(
-            aws_translate_service["service_name"], aws_translate_service["service_region"],
-            aws_translate_service["access_key"], aws_translate_service["access_secret"],
+            service["service_name"], service["service_region"], service["access_key"], service["access_secret"]
         ).translate
 
     @TranslatorSelectorDecorator(_translator_name="Google")

@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="Django-translate_po",
-    version="0.1.0",
+    name="django-translate_po",
+    version="0.2.0",
     author="Kido Zhao",
     author_email="zgdisgod@hotmail.com",
     description="Automatic PO file translator",
@@ -37,14 +37,14 @@ setuptools.setup(
         'polib>=1.1.0',
         'googletrans>=3.0.0',
         'django>=2.1.12',
-        'boto3>=1.17.91',
+        'boto3>=1.9.245',
         'redis>=3.5.3'
     ],
     setup_requires=[
         'polib>=1.1.0',
         'googletrans>=3.0.0',
         'django>=2.1.12',
-        'boto3>=1.17.91',
+        'boto3>=1.9.245',
         'redis>=3.5.3'
     ],
 )
