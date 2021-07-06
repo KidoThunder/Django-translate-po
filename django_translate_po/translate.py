@@ -1,6 +1,6 @@
 import polib
 
-from translate_po.translator_functions import select_translator_function
+from django_translate_po.translator_functions import select_translator_function
 
 
 class PoTranslator(object):

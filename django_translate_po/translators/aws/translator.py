@@ -1,6 +1,6 @@
 import boto3
 
-from translators.base_translator import TranslatorCacheController, AbstractTranslator
+from django_translate_po.translators.base_translator import TranslatorCacheController, AbstractTranslator
 
 
 class AWSTranslator(AbstractTranslator, TranslatorCacheController):

@@ -14,8 +14,7 @@ def delete_files_in_directory(directory):
 
 
 def build_dist():
-    os.system("python setup.py sdist")
-    os.system("python setup.py bdist_wheel --universal")
+    os.system("python setup.py sdist bdist_wheel")
 
 
 def upload_to_pypi(live=False):
